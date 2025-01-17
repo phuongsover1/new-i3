@@ -32,7 +32,7 @@ set $preferredScreenCaptureTool /usr/bin/flameshot gui
 ###########################################
 
 bindsym $super+F1 exec $preferredBrowser;focus
-#bindsym $super+F2 exec $preferredMailClient;focus
+bindsym $super+F2 exec $preferredMailClient;focus
 bindsym $super+F3 exec $preferredFileManager;focus
 bindsym $super+F4 exec $preferredTextEditor;focus
 
@@ -50,8 +50,7 @@ bindsym $super+t exec kitty
 bindsym $super+SHIFT+i exec ~/.local/bin/shcts
 
 # set font
-#font pango: source code pro 10
-font pango:FiraCode Nerd Font 8
+font pango: source code pro 10
 
 # Use Mouse+$super to drag floating windows to their wanted position
 floating_modifier $super
@@ -71,14 +70,10 @@ exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id setcursor
 #exec_always --no-startup-id ${HOME}/.config/polybar/launch.sh
 exec_always --no-startup-id numlockx on
-exec blueberry-tray &
+exec blueberry-tray
 exec --no-startup-id java -Xmx1024m -jar "/opt/xdman/xdman.jar" -m
-exec --no-startup-id ~/.local/bin/fastfetch-garuda & 
-exec --no-startup-id ~/.local/bin/shcts &
-
-## custom
-exec --no-startup-id "~/.config/polybar/restart.sh" 
-exec_always --no-startup-id "/home/nero/.config/i3/i3lock-suspend.sh"
+exec --no-startup-id ~/.local/bin/fastfetch-garuda
+exec --no-startup-id ~/.local/bin/shcts
 
 # hide/unhide i3status bar
 bindsym $super+m bar mode toggle
@@ -87,10 +82,7 @@ bindsym $super+m bar mode toggle
 bindsym $super+Shift+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=20'"
 
 # start rofi (a program launcher) change modus Ctrl + Tab
-# start rofi (a program launcher)
-bindsym $super+slash exec --no-startup-id "rofi -show drun"
-bindsym $super+F2 exec --no-startup-id "rofi -show run"
-bindsym $super+Tab exec --no-startup-id "rofi -show window"
+bindsym $super+d exec rofi -show run
 
 # Garuda Linux install
 bindsym $super+i exec sudo -E calamares
@@ -234,59 +226,25 @@ bindsym $super+n border normal
 
 # panel
 # Start i3bar to display a workspace bar
-# use catppuccin palette
-set $rosewater #f5e0dc
-set $flamingo  #f2cdcd
-set $pink      #f5c2e7
-set $mauve     #cba6f7
-set $red       #f38ba8
-set $maroon    #eba0ac
-set $peach     #fab387
-set $green     #a6e3a1
-set $teal      #94e2d5
-set $sky       #89dceb
-set $sapphire  #74c7ec
-set $blue      #89b4fa
-set $lavender  #b4befe
-set $text      #cdd6f4
-set $subtext1  #bac2de
-set $subtext0  #a6adc8
-set $overlay2  #9399b2
-set $overlay1  #7f849c
-set $overlay0  #6c7086
-set $surface2  #585b70
-set $surface1  #45475a
-set $surface0  #313244
-set $base      #1e1e2e
-set $mantle    #181825
-set $crust     #11111b
 
-# target                 title     bg    text   indicator  border
-client.focused           $lavender $lavender $base  $lavender $lavender
-client.focused_inactive  $surface1 $base $text  $surface1  $surface1
-client.unfocused         $surface1 $base $text  $surface1  $surface1
-client.urgent            $peach    $base $peach $overlay0  $peach
-client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
-client.background        $base
+bar {
+	status_command exec /usr/bin/net-speed.sh
+	#strip_workspace_numbers yes|no
+	#strip_workspace_name yes|no
+	colors {
+    background #2f343f
+    statusline #FFFFFF
+    separator  #666666
 
-#bar {
-#	status_command exec /usr/bin/net-speed.sh
-#	#strip_workspace_numbers yes|no
-#	#strip_workspace_name yes|no
-#	colors {
-#    background #2f343f
-#    statusline #FFFFFF
-#    separator  #666666
-#
-#    focused_workspace  #4C7899 #285577 #FFFFFF
-#    active_workspace   #333333 #222222 #FFFFFF
-#    inactive_workspace #333333 #222222 #888888
-#    urgent_workspace   #2F343A #900000 #FFFFFF
-#    #binding_mode      #2F343A #900000 #FFFFFF
-#    # colour of border, background, and text
-#    }
-#
-#}
+    focused_workspace  #4C7899 #285577 #FFFFFF
+    active_workspace   #333333 #222222 #FFFFFF
+    inactive_workspace #333333 #222222 #888888
+    urgent_workspace   #2F343A #900000 #FFFFFF
+    #binding_mode      #2F343A #900000 #FFFFFF
+    # colour of border, background, and text
+    }
+
+}
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -304,8 +262,6 @@ for_window [title="MuseScore: Play Panel"] floating enable
 for_window [class="azote"] floating enable sticky enable border normal
 for_window [class="Oblogout"] fullscreen enable
 for_window [class="octopi"] floating enable
-for_window [class="stalonetray"] border pixel 0
-for_window [class="Blueman-manager" ] floating enable
 for_window [title="About Pale Moon"] floating enable
 for_window [class="Pamac-manager"] floating enable
 for_window [class="Pamac-updater"] floating enable
@@ -330,12 +286,12 @@ for_window [class=URxvt|firedragon|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfb
 for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus
 
 # colour of border, background, text, indicator, and child_border
-#client.focused              #bf616a #2f343f #d8dee8 #bf616a #d8dee8
-#client.focused_inactive     #2f343f #2f343f #d8dee8 #2f343f #2f343f
-#client.unfocused            #2f343f #2f343f #d8dee8 #2f343f #2f343f
-#client.urgent               #2f343f #2f343f #d8dee8 #2f343f #2f343f
-#client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
-#client.background           #2f343f
+client.focused              #bf616a #2f343f #d8dee8 #bf616a #d8dee8
+client.focused_inactive     #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.unfocused            #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.urgent               #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.background           #2f343f
 
 
 
@@ -344,11 +300,9 @@ for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo
 #############################
 
 # Set inner/outer gaps
-#gaps inner 0
-#gaps outer -2
-
 gaps inner 0
-gaps outer 0
+gaps outer -2
+
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
 # gaps inner all set 10
