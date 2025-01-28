@@ -215,35 +215,35 @@ function setIcons {
     fi
     WIND=""
     WINDFORCE=`echo "$RESPONSE" | jq .wind.speed`
-    WINDICON=""
+    WINDICON="  "
     if [ $BEAUFORTICON == "yes" ];then
         WINDFORCE2=`echo "scale=$DECIMALS;$WINDFORCE * 3.6 / 1" | bc`
         if [ $WINDFORCE2 -le 1 ]; then
-            WINDICON=""
+            WINDICON=" "
         elif [ $WINDFORCE2 -gt 1 ] && [ $WINDFORCE2 -le 5 ]; then
-            WINDICON=""
+            WINDICON=" "
         elif [ $WINDFORCE2 -gt 5 ] && [ $WINDFORCE2 -le 11 ]; then
-            WINDICON=""
+            WINDICON=" "
         elif [ $WINDFORCE2 -gt 11 ] && [ $WINDFORCE2 -le 19 ]; then
-            WINDICON=""
+            WINDICON=" "
         elif [ $WINDFORCE2 -gt 19 ] && [ $WINDFORCE2 -le 28 ]; then
-            WINDICON=""
+            WINDICON=" "
         elif [ $WINDFORCE2 -gt 28 ] && [ $WINDFORCE2 -le 38 ]; then
-            WINDICON=""
+            WINDICON=" "
         elif [ $WINDFORCE2 -gt 38 ] && [ $WINDFORCE2 -le 49 ]; then
-            WINDICON=""
+            WINDICON=" "
         elif [ $WINDFORCE2 -gt 49 ] && [ $WINDFORCE2 -le 61 ]; then
-            WINDICON=""
+            WINDICON=" "
         elif [ $WINDFORCE2 -gt 61 ] && [ $WINDFORCE2 -le 74 ]; then
-            WINDICON=""
+            WINDICON=" "
         elif [ $WINDFORCE2 -gt 74 ] && [ $WINDFORCE2 -le 88 ]; then
-            WINDICON=""
+            WINDICON=" "
         elif [ $WINDFORCE2 -gt 88 ] && [ $WINDFORCE2 -le 102 ]; then
-            WINDICON=""
+            WINDICON=" "
         elif [ $WINDFORCE2 -gt 102 ] && [ $WINDFORCE2 -le 117 ]; then
-            WINDICON=""
+            WINDICON=" "
         elif [ $WINDFORCE2 -gt 117 ]; then
-            WINDICON=""
+            WINDICON=" "
         fi
     fi
     if [ $KNOTS = "yes" ]; then
@@ -278,7 +278,7 @@ function setIcons {
                 fi
             fi
         fi
-        WIND="$WIND |"
+        WIND="$WIND  |"
     fi
     if [ "$UNITS" = "metric" ]; then
         TEMP_ICON="󰔄"
