@@ -19,4 +19,4 @@ pkill xidlehook
     'xrandr --output "$PRIMARY_DISPLAY" --brightness 1; /home/nero/.config/i3/i3lock.sh' \
     '' \
   `# Finally, suspend an hour after it locks` \
-  --timer 2000 'systemctl suspend' ''
+  --timer 3600 'systemctl suspend' ''
