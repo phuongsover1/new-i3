@@ -68,7 +68,7 @@ exec --no-startup-id nm-applet
 #exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 #exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id setcursor
+#exec_always --no-startup-id setcursor
 #exec_always --no-startup-id ${HOME}/.config/polybar/launch.sh
 exec_always --no-startup-id numlockx on
 #exec blueberry-tray &
@@ -82,7 +82,8 @@ exec --no-startup-id /usr/libexec/polkit-gnome-authentication-agent-1
 exec --no-startup-id "~/.config/polybar/restart.sh" 
 exec_always --no-startup-id "/home/nero/.config/i3/i3lock-suspend.sh"
 exec --no-startup-id /usr/libexec/xdg-desktop-portal-gtk  
-exec batsignal -b -d 15 -c 30 -w 50 -p
+exec --no-startup-id  batsignal -b -d 15 -c 30 -w 50 -p
+bindsym $super+Shift+s exec --no-startup-id "maim -s | xclip -selection clipboard -t image/png;
 
 # hide/unhide i3status bar
 bindsym $super+m bar mode toggle
@@ -98,7 +99,7 @@ bindsym $super+Tab exec --no-startup-id "rofi -show window"
 
 
 # Lock screen
-bindsym $super+l exec "~/.config/i3/i3lock.sh"
+bindsym $super+l exec --no-startup-id "~/.config/i3/i3lock.sh"
 
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5; exec notify-send 'brightness up 5%'
@@ -157,10 +158,10 @@ bindsym $super+s layout toggle split
 bindsym $super+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $super+Shift+space focus mode_toggle
+#bindsym $super+Shift+space focus mode_toggle
 
 # toggle sticky
-bindsym $super+Shift+s sticky toggle
+bindsym $super+Shift+t sticky toggle
 
 # focus the parent container
 bindsym $super+a focus parent
