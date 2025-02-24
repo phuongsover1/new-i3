@@ -10,13 +10,9 @@ pkill xidlehook
   --not-when-fullscreen \
   `# Don't lock when there's audio playing` \
   --not-when-audio \
-  `# Dim the screen after 60 seconds, undim if user becomes active` \
-  --timer 60 \
-    'xrandr --output "$PRIMARY_DISPLAY" --brightness .1' \
-    'xrandr --output "$PRIMARY_DISPLAY" --brightness 1' \
   `# Undim & lock after 10 more seconds` \
-  --timer 20 \
-    'xrandr --output "$PRIMARY_DISPLAY" --brightness 1; /home/nero/.config/i3/i3lock.sh' \
+  --timer 300 \
+    '/home/nero/.config/i3/i3lock.sh' \
     '' \
   `# Finally, suspend an hour after it locks` \
-  --timer 3600 'systemctl suspend' ''
+  --timer 1000 'systemctl suspend' ''

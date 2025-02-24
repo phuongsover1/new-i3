@@ -72,10 +72,10 @@ exec_always --no-startup-id ff-theme-util
 #exec_always --no-startup-id ${HOME}/.config/polybar/launch.sh
 exec_always --no-startup-id numlockx on
 #exec blueberry-tray &
-exec --no-startup-id picom
-exec --no-startup-id blueman-applet
-exec --no-startup-id fcitx5
-exec --no-startup-id pasystray
+#exec --no-startup-id picom
+#exec --no-startup-id blueman-applet
+#exec --no-startup-id fcitx5
+#exec --no-startup-id pasystray
 exec --no-startup-id /usr/libexec/polkit-gnome-authentication-agent-1
 
 ## custom
@@ -237,6 +237,7 @@ bindsym $super+n border normal
 # Other
 bindsym $super+p exec colorpicker --short --one-shot --preview | xsel -b
 bindsym $super+w layout toggle stacking tabbed splith
+bindsym $super+Shift+p exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 
 
 # panel
